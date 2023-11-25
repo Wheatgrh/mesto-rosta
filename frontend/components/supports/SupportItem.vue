@@ -1,27 +1,32 @@
 <template>
-    <div class="support-container">
-        <div class="support-container__block">
-            <div class="text-sm tablet:text-xl">{{ title }}</div>
-            <div class="support-container__bottom">
-                <div>{{ date }}</div>
-                <div class="tag-container">
-                    <component :is="TagButton" v-for="tag, i in tags" :color="i === 0 ? 'var(--primary)' : 'var(--green)'"
-                        :text="tag.name" />
+    <component :is="ContainerWithShadow">
+        <div class="support-container">
+            <div class="support-container__block">
+                <div class="text-container text-sm tablet:text-lg">{{ title }}</div>
+                <div class="support-container__bottom">
+                    <div>{{ date }}</div>
+                    <div class="tag-container">
+                        <component :is="TagButton" v-for="tag, i in tags"
+                            :color="i === 0 ? 'var(--primary)' : 'var(--green)'" :text="tag.name" />
+                    </div>
                 </div>
             </div>
+            <div class="image-container" @click="handleClick" :style="rotationStyle">
+                <img class="image" :src="iconSrc">
+            </div>
         </div>
-        <div class="image-container" @click="handleClick" :style="rotationStyle">
-            <img class="image" :src="iconSrc">
+        <div class="container drop-down-container" :class="{ 'drop-down-container_open': state }"
+            ref="dropDownContainerRef">
+            <component :is="Description" v-for="item in description" :title="item.title" :text="item.text" />
         </div>
-    </div>
-    <div class="container drop-down-container" :class="{ 'drop-down-container_open': state }" ref="dropDownContainerRef">
-        <component :is="Description" v-for="item in description" :title="item.title" :text="item.text" />
-    </div>
+    </component>
 </template>
 
 
 
 <script lang="ts" setup>
+import { ref, computed } from 'vue'
+import ContainerWithShadow from './ContainerWithShadow.vue';
 import TagButton from './TagButton.vue';
 import Description from './Description.vue';
 interface TagType { color: string, name: string }
@@ -66,7 +71,7 @@ const state = ref(false)
 .image-container {
     display: flex;
     align-items: start;
-    justify-content: start;
+    justify-content: end;
     height: 100%;
     transition: all 500ms;
 }
@@ -77,6 +82,10 @@ const state = ref(false)
     align-items: center;
     padding: 0 25px;
     height: 100%;
+
+    &__block {
+        // max-width: 70vw;
+    }
 
     &__bottom {
         display: flex;
@@ -98,6 +107,10 @@ const state = ref(false)
 }
 
 @media (max-width: theme('screens.laptop')) {
+    .image-container {
+        width: 20vw;
+    }
+
     .image {
         height: 45px;
     }

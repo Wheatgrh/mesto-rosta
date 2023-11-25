@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ContainerWithShadow from '~/components/supports/ContainerWithShadow.vue';
-import Filters from '~/components/supports/Filters.vue';
-import SupportItem from '~/components/supports/SupportItem.vue'
-
-import { fetchData } from '@/api/gosuslugi.js'
+import ContainerWithShadow from '../components/supports/ContainerWithShadow.vue';
+import Filters from '../components/supports/Filters.vue';
+import SupportItem from '../components/supports/SupportItem.vue'
+import { ref, onMounted } from 'vue'
+import { fetchData } from '../api/gosuslugi.js'
 interface SupportData {
     title: string;
     date: string;
@@ -26,10 +26,10 @@ onMounted(async () => {
         <component :is="ContainerWithShadow" :styles="{ minHeight: '145px' }">
             <component :is="Filters" />
         </component>
-        <component :is="ContainerWithShadow">
+        <div class="wrapper" style="gap: 25px">
             <component v-for="item in supports" :is="SupportItem" :date="item.date" :title="item.title"
                 :tags="item.categories" :description="item.content" iconSrc="/images/arrow.svg" />
-        </component>
+        </div>
     </div>
 </template>
 
