@@ -12,8 +12,16 @@ export default {
     container: {
       padding: '1rem',
     },
+    colors: {
+      'primary': 'var(--primary)',
+      'secondary': 'var(--secondary)',
+      'white': 'var(--white)',
+      'light': 'var(--light)',
+      'dark': 'var(--dark)'
+    },
     screens: {
-      'tablet': '640px',
+      'mobile': '500px',
+      'tablet': '760px',
       'laptop': '1024px',
       'desktop': '1440px',
       // @media (max-width: theme('screens.desktop')) {}

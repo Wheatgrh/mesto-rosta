@@ -1,14 +1,18 @@
 
 <template>
   <VHeader />
-  <NearEvents />
-  <About />
+  <Sppliter />
+  <UpcomingEvent />
+  <!-- <AboutUsCase /> -->
+  <AboutUs />
   <Algorithm />
 </template>
 
 <script setup lang="ts">
 import VHeader from '../components/index/VHeader.vue';
-import NearEvents from '../components/index/NearEvents.vue';
-import About from '../components/index/About.vue'
 import Algorithm from '../components/index/Algorithm.vue'
+import UpcomingEvent from '../components/index/UpcomingEvent.vue'
+// import AboutUsCase from '~/components/index/AboutUsCase.vue';
+import AboutUs from '../components/index/AboutUs.vue';
+import Sppliter from '~/components/common/Sppliter.vue';
 </script>
