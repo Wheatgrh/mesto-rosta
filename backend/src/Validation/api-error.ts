@@ -19,13 +19,10 @@ export function validationPipeExceptionFactory(opts: ValidationError[]) {
     }
   };
 
-  const details = opts.reduce(
-    (acc, e) => {
-      acc[e.property] = transformErrors(e);
-      return acc;
-    },
-    {} as Record<string, any>,
-  );
+  const details = opts.reduce((acc, e) => {
+    acc[e.property] = transformErrors(e);
+    return acc;
+  }, {} as Record<string, any>);
 
   throw createValidationException(details);
 }
@@ -36,10 +33,10 @@ export type ApiErrorDetails<T> = {
   [P in keyof T]: T[P] extends Scalar
     ? string[]
     : T[P] extends Array<infer U>
-      ? ApiErrorDetails<U>[]
-      : T[P] extends Record<string, any>
-        ? ApiErrorDetails<T[P]>
-        : string[];
+    ? ApiErrorDetails<U>[]
+    : T[P] extends Record<string, any>
+    ? ApiErrorDetails<T[P]>
+    : string[];
 };
 
 export class ApiError<T = undefined> {
