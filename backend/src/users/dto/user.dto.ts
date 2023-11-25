@@ -7,6 +7,15 @@ export class UserDto {
   @IsString()
   password: string;
 
-  @IsBoolean()
-  isAdmin = false;
+  @IsString()
+  name: string;
+
+  @IsString()
+  surname: string;
+
+  @IsString()
+  patronymic: string;
+
+  @IsString()
+  role: string;
 }

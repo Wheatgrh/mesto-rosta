@@ -460,7 +460,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "string"
         }
       },
@@ -498,6 +498,7 @@
             "uuid"
           ],
           "referencedTableName": "public.images",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       }

@@ -8,8 +8,10 @@ export let fetchInstance: $Fetch;
 export default defineNuxtPlugin(nuxtApp => {
   const config = useRuntimeConfig()
   const counter = ref(0)
+  console.log(config.public.apiBase);
 
   fetchInstance = ofetch.create({
+    baseURL: config.public.apiBase || 'localhost',
     onRequest({ options }) {
       options.headers = { count: `${counter.value++}`}
       console.log('On Request Hook');

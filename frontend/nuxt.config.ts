@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   components: {
     dirs: ['~/components']
   },
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://localhost:8000'
+    }
+  },
   devtools: { enabled: true },
   modules: [ '@pinia/nuxt'],
   css: ['~/assets/css/main.css'],

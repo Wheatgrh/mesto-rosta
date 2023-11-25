@@ -37,15 +37,19 @@ export class User extends BaseEntity<User, 'uuid'> {
   @Property()
   role: string;
 
-  @ManyToMany({ entity: () => Interest, pivotEntity: () => UserInterest })
+  @ManyToMany({
+    nullable: true,
+    entity: () => Interest,
+    pivotEntity: () => UserInterest,
+  })
   interests = new Collection<Interest>(this);
 
   @Property({ type: 'int', default: 0 })
   score: number;
 
-  @ManyToOne(() => UploadImage)
+  @ManyToOne(() => UploadImage, { nullable: true })
   avatar: UploadImage;
 
-  @OneToMany(() => Certificate, (cert) => cert.user)
+  @OneToMany(() => Certificate, (cert) => cert.user, { nullable: true })
   certificates = new Collection<Certificate>(this);
 }
