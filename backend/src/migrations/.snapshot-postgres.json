@@ -462,6 +462,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "string"
+        },
+        "check_list": {
+          "name": "check_list",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
         }
       },
       "name": "users",

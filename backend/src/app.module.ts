@@ -8,6 +8,7 @@ import { PartnersModule } from './partners/partners.module';
 import { AuthModule } from './auth/auth.module';
 import { RedisModule } from './redis/redis.module';
 import { MikroOrmModule } from '@mikro-orm/nestjs/mikro-orm.module';
+import { GptModule } from './gpt/gpt.module';
 import mikroOrmConfig from './mikro-orm.config';
 
 @Module({
@@ -24,6 +25,7 @@ import mikroOrmConfig from './mikro-orm.config';
     PartnersModule,
     AuthModule,
     RedisModule,
+    GptModule,
   ],
   controllers: [],
   providers: [],

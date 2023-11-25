@@ -1,6 +1,6 @@
-import { EntityManager, NotFoundError } from '@mikro-orm/core';
+import { EntityManager, NotFoundError, ValidationError } from '@mikro-orm/core';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UserDto } from './dto/user.dto';
+import { UserDto, UpdateUserDto } from './dto/user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 @Injectable()
@@ -21,6 +21,20 @@ export class UsersService {
       if (err instanceof NotFoundError) {
         throw new NotFoundException('Такого пользователя не существует');
       }
+    }
+  }
+
+  async updateUser(dto: UpdateUserDto) {
+    try {
+      const user = await this.em.findOneOrFail(User, {
+        uuid: dto.uuid,
+      });
+      this.em.assign(user, dto);
+      await this.em.persistAndFlush(user);
+      return user;
+    } catch (err) {
+      console.error(err);
+      throw new ValidationError('Ошибка');
     }
   }
 }

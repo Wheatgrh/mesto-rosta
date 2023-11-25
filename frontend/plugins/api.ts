@@ -2,6 +2,8 @@ import { ofetch, $Fetch } from 'ofetch'
 import { UploadsApi } from './api-modules/uploads'
 import { ApiError } from './api-modules/api-error'
 import { AuthApi } from './api-modules/auth'
+import { GptApi } from './api-modules/gpt';
+import { UsersApi } from './api-modules/users';
 
 export let fetchInstance: $Fetch;
 
@@ -13,7 +15,7 @@ export default defineNuxtPlugin(nuxtApp => {
   fetchInstance = ofetch.create({
     baseURL: config.public.apiBase || 'localhost',
     onRequest({ options }) {
-      options.headers = { count: `${counter.value++}`}
+      options.headers = { count: `${counter.value++}` }
       console.log('On Request Hook');
     },
     onResponseError(_ctx) {
@@ -24,7 +26,7 @@ export default defineNuxtPlugin(nuxtApp => {
       if (_ctx.response.status === 500) {
         error.message = 'Ошибка сервера'
       }
-      if(_ctx.response.status === 404) {
+      if (_ctx.response.status === 404) {
         showError(error)
       }
       console.error(error);
@@ -34,7 +36,9 @@ export default defineNuxtPlugin(nuxtApp => {
 
   const modules = {
     uploads: new UploadsApi(fetchInstance),
-    auth: new AuthApi(fetchInstance)
+    auth: new AuthApi(fetchInstance),
+    gpt: new GptApi(fetchInstance),
+    users: new UsersApi(fetchInstance)
   }
 
   Object.freeze(modules)

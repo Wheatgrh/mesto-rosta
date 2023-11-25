@@ -6,10 +6,11 @@
 :root {
   --primary: #589BFB;
   --secondary: #EE4037;
-  --light: #AFCDF9;
+  --light: #e8e7e7;
   --white: #ffffff;
   --dark: #000000;
-  --green: #63D2B4;
+
+
 }
 
 body {

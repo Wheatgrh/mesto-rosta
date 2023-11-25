@@ -4,13 +4,13 @@
         <div class="stat__first__block">
             <p>Выполненные
                 задания</p>
-            <circle-progress size="100" class="stat__circle__block" fill-color="#63D2B4" :percent="per" />
+            <circle-progress size="100" class="stat__circle__block" fill-color="#63D2B4" :percent="perFir" />
             <span>{{ perFir }}%</span>
         </div>
         <div class="stat__spliter__style"></div>
         <div class="stat__second__block">
             <p>Посещение мероприятия</p>
-            <circle-progress size="100" class="stat__circle__block" fill-color="#63D2B4" :percent="per" />
+            <circle-progress size="100" class="stat__circle__block" fill-color="#63D2B4" :percent="perSec" />
             <span>{{ perSec }}%</span>
         </div>
     </div>

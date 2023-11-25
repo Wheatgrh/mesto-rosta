@@ -1,4 +1,5 @@
-import { IsBoolean, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UserDto {
   @IsString()
@@ -18,4 +19,17 @@ export class UserDto {
 
   @IsString()
   role: string;
+
+  @IsOptional()
+  checkList?: [
+    {
+      quest: string;
+      stat: boolean;
+    },
+  ];
+}
+
+export class UpdateUserDto extends PartialType(UserDto) {
+  @IsString()
+  uuid: string;
 }

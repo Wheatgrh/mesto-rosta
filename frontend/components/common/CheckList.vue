@@ -7,26 +7,39 @@
 
             <div>
                 <ul class="check__main__table">
-                    <li v-for="item in mass" class="check__li__style">
+                    <li v-for="item in checkList" class="check__li__style">
                         <label class="check__list__text__style">
-                            <input class="check__box__style" type="checkbox" v-model="item.stat">
+                            <input @change="onRefresh(false)" class="check__box__style" type="checkbox" v-model="item.stat">
                             <span>{{ item.quest }}</span>
                         </label>
                     </li>
                 </ul>
             </div>
         </div>
-
-
         <div class="check__under__block">
-            <span>Новый чек-лист</span>
-            <span>Добавить задачу </span>
+            <span class="check__btn" @click="onRefresh(true)">Новый чек-лист</span>
+            <span class="check__btn">Добавить задачу</span>
         </div>
     </div>
 </template>
 
 
 <script setup lang="ts">
+import { useAuthStore } from '../../stores/auth';
+const { $api } = useNuxtApp()
+
+const authStore = useAuthStore()
+const checkList = computed(() => {
+    return authStore.user?.checkList
+})
+const onRefresh = async (empty: boolean) => {
+    if (empty) {
+        authStore.updateUser(await $api.modules.users.update({ ...authStore.getUser(), checkList: null }))
+    }
+    else {
+        authStore.updateUser(await $api.modules.users.update({ ...authStore.getUser() }))
+    }
+}
 const mass = [{
     quest: '4 чек ффывфывыфвфывфывфыв фывыфвфы dasывыфв фывфыв',
     stat: false
@@ -78,6 +91,10 @@ const mass = [{
 
 <style lang="scss">
 .check {
+    &__btn:hover {
+        cursor: pointer;
+        color: var(--primary);
+    }
 
     &__under__block {
         display: flex;

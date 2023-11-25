@@ -41,7 +41,7 @@ const cValue = computed({
   }
 
   .v-input__field {
-    border: 1px solid #e8e7e7;
+    border: 1px solid var(--light);
     padding: 14px 20px;
     border-radius: 8px;
     // margin-bottom: 18px;

@@ -52,4 +52,7 @@ export class User extends BaseEntity<User, 'uuid'> {
 
   @OneToMany(() => Certificate, (cert) => cert.user, { nullable: true })
   certificates = new Collection<Certificate>(this);
+
+  @Property({ type: 'jsonb', nullable: true })
+  checkList: [{ quest: string; stat: boolean }];
 }

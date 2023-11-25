@@ -1,12 +1,13 @@
 <template>
-  <button class="button" :class="schema ? `button_${schema}` : ''">
+  <button class="button" :class="{ 'button_disabled': disabled }" :disabled="disabled">
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  schema?: string
+  schema?: string,
+  disabled?: boolean
 }>()
 </script>
 <style lang="scss">
@@ -17,6 +18,16 @@ defineProps<{
   border-radius: 10px;
   padding: 5px 20px;
   transition: color .3s ease-in-out, background .3s ease-in-out;
+
+  &[disabled] {
+    color: var(--light);
+    border-color: var(--light);
+
+    &:hover {
+      background-color: var(--white);
+      color: var(--light);
+    }
+  }
 
   &:hover {
     color: var(--white);

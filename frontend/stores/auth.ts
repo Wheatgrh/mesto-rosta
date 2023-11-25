@@ -1,5 +1,6 @@
-import {defineStore} from 'pinia'
-import { ILoginResponse, ITokens, IUser } from '../plugins/api-modules/auth'
+import { defineStore } from 'pinia'
+import { ILoginResponse } from '../plugins/api-modules/auth'
+import { IUser } from '../assets/types'
 
 export const useAuthStore = defineStore('auth', () => {
   const token: Ref<null | string> = ref(null)
@@ -12,12 +13,17 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = dto.user
   }
   const isAuth = () => token.value ? true : false
-  const isAdmin = () => {
-    if(!user.value) {
-      return false
-    }
-    return user.value.isAdmin
-  }
+
   const getUser = () => user.value
-  return {updateState, isAuth, isAdmin, getUser, token, refresh, user}
+  const updateUser = (usr: IUser) => {
+    user.value = usr
+  }
+
+  const getChecklist = () => {
+    if (user.value && user.value.checkList) {
+      return user.value.checkList
+    }
+    return null
+  }
+  return { updateState, isAuth, getUser, updateUser, getChecklist, token, refresh, user }
 })
