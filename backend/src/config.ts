@@ -3,7 +3,7 @@ dotenv.config();
 
 const config = {
   jwtSecret: process.env.JWT_SECRET || 'develop',
-  redisPassword: process.env.REDIS_PASSWORD || 'password',
+  redisPassword: process.env.REDIS_HOST_PASSWORD,
   redisPort: process.env.REDIS_PORT || 6379,
   redisHost: process.env.REDIS_HOST || 'localhost',
 };

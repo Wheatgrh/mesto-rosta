@@ -1,12 +1,11 @@
 import {
   ForbiddenException,
-  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { EntityManager } from '@mikro-orm/core';
-import { UserEntity } from '../users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from './jwt.service';
 import { RefreshDto } from './dto/refresh.dto';
@@ -19,11 +18,7 @@ export class AuthService {
   ) {}
 
   async login(dto: LoginDto) {
-    const user = await this.em.findOne(
-      UserEntity,
-      { phone: dto.phone },
-      { populate: ['customerProfile', 'permissions', 'staffProfile'] },
-    );
+    const user = await this.em.findOne(User, { phone: dto.phone });
     if (!user || !(await bcrypt.compare(dto.password, user.password))) {
       throw new ForbiddenException('Неверный логин или пароль');
     }
@@ -43,11 +38,7 @@ export class AuthService {
     const [userUuid] = res[0].split(':');
     const tokens = await this.jwtService.createTokensAsync(userUuid);
     await this.jwtService.removeToken(res[0]);
-    const user = await this.em.findOne(
-      UserEntity,
-      { uuid: userUuid },
-      { populate: ['customerProfile', 'permissions', 'staffProfile'] },
-    );
+    const user = await this.em.findOne(User, { uuid: userUuid });
     return {
       tokens,
       user,
