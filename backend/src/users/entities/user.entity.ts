@@ -4,6 +4,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
@@ -11,6 +12,7 @@ import { v4 } from 'uuid';
 import { Interest } from '../../interests/entities/interest.entity';
 import { UserInterest } from './userIterest.entity';
 import { UploadImage } from '../../uploads/entities/image.entity';
+import { Certificate } from '../../certificates/entities/certificate.entity';
 
 @Entity({ tableName: 'users' })
 export class User extends BaseEntity<User, 'uuid'> {
@@ -43,4 +45,7 @@ export class User extends BaseEntity<User, 'uuid'> {
 
   @ManyToOne(() => UploadImage)
   avatar: UploadImage;
+
+  @OneToMany(() => Certificate, (cert) => cert.user)
+  certificates = new Collection<Certificate>(this);
 }
