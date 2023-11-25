@@ -183,6 +183,8 @@ const mass = [{
         border-radius: 15px;
         background-color: #fff;
         filter: drop-shadow(0px 0px 56.900001525878906px rgba(0, 0, 0, 0.10));
+        position: sticky;
+        top: 85px;
     }
 
     &__filter__block h3 {

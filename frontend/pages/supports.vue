@@ -7,16 +7,19 @@ import { fetchData } from '../api/gosuslugi.js'
 interface SupportData {
     title: string;
     date: string;
-    categories: any[]; // You can replace 'any[]' with the actual type for categories
-    content: any[]; // You can replace 'any[]' with the actual type for content
+    categories: any[]
+    content: any[];
 }
 const supports = ref<SupportData[]>([]);
+const isLoading = ref(false)
 onMounted(async () => {
     try {
+        isLoading.value = true
         supports.value = await fetchData('https://www.gosuslugi.ru/api/content-store/v1/store/measures/news'); // Используйте функцию из модуля API
     } catch (error) {
-        // Обработка ошибок здесь, если необходимо
         console.error('Ошибка при запросе данных:', error);
+    } finally {
+        isLoading.value = false
     }
 });
 </script>
@@ -26,7 +29,8 @@ onMounted(async () => {
         <component :is="ContainerWithShadow" :styles="{ minHeight: '145px' }">
             <component :is="Filters" />
         </component>
-        <div class="wrapper" style="gap: 25px">
+        <LoadingComponent v-if="isLoading" />
+        <div class="wrapper" style="gap: 25px" v-else>
             <component v-for="item in supports" :is="SupportItem" :date="item.date" :title="item.title"
                 :tags="item.categories" :description="item.content" iconSrc="/images/arrow.svg" />
         </div>
