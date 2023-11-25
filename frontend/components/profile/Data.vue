@@ -25,7 +25,8 @@
         <div class="col-start-3 col-end-11 grid" v-if="tags.length > 0">
             <h2 class="text-center text">Выбранные интересы при регистрации </h2>
             <div class="tags-container">
-                <VButton v-for="(tag, index) in tags" :key="index" :text="tag" @click="removeTag(index)" />
+                <VButton v-for="(tag, index) in tags" :key="index" :text="tag" @click="removeTag(index)"
+                    class="tags__style" />
             </div>
         </div>
     </div>
@@ -80,6 +81,10 @@ const addTag = () => {
 </script>
 
 <style lang="scss" scoped>
+.tags__style {
+    background-color: #589BFB;
+}
+
 .button {
     margin-top: 55px;
     display: flex;
@@ -93,11 +98,14 @@ const addTag = () => {
     justify-content: center;
     gap: 20px;
     margin-top: 25px;
+    color: #fff;
+
 }
 
 .input-border {
-    box-shadow: 4px 6px 15px 0px rgba(0, 0, 0, 0.10);
+    filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.02));
     border-radius: 10px;
+    border: 2px #dedede solid;
     height: 54px;
 }
 

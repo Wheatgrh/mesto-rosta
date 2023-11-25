@@ -3,7 +3,8 @@
     <div class="container mx-auto header__grid">
       <div class="header__info">
         <h1 class="header__h1">Развиваем IT предпринимательство в Югре вместе</h1>
-        <p class="header__sub">Создан помогать и что-то еще, нужно <br> удлиннить и тут еще что-то</p>
+        <p class="header__sub">Место Роста - сервис для IT-специалистов, обеспечивающий быстрый поиск мероприятий и
+          государственной поддержки.</p>
         <div class="grid grid-cols-1 gap-5 tablet:grid-cols-3">
           <HeaderCard v-for="item in items" :text="item" />
         </div>
@@ -11,8 +12,8 @@
       <div class="header__cub">
         <div class="header__cub-grid">
           <div class="header__cub-item">
-            <p class="text-[30px] desktop:text-[40px] font-medium">200+</p>
-            <p class="text-[16px]">успешных кейсов <br>учеников</p>
+            <p class="text-[30px] desktop:text-[40px] font-medium">20+</p>
+            <p class="text-[16px]">партнеров</p>
           </div>
           <div class="header__cub-item">
             <p class="text-[30px] desktop:text-[40px] font-medium">15+</p>
@@ -20,7 +21,7 @@
           </div>
           <div class="header__cub-item">
             <p class="text-[30px] desktop:text-[40px] font-medium">200+</p>
-            <p class="text-[16px]">успешных кейсов <br>учеников</p>
+            <p class="text-[16px]">успешных кейсов</p>
           </div>
         </div>
         <div class="header__cub-img">
