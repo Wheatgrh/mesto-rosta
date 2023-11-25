@@ -9,8 +9,35 @@ export default defineNuxtConfig({
     }
   },
   devtools: { enabled: true },
-  modules: [ '@pinia/nuxt'],
-  css: ['~/assets/css/main.css'],
+  modules: ['@pinia/nuxt', 'nuxt-primevue'],
+  primevue: {
+    usePrimeVue: true,
+    options: {},
+    importPT: undefined,
+    cssLayerOrder: 'tailwind-base, primevue, tailwind-utilities',
+    components: {
+      prefix: '',
+      name: undefined,
+      include: undefined,
+      exclude: undefined
+    },
+    directives: {
+      prefix: '',
+      name: undefined,
+      include: undefined,
+      exclude: undefined
+    },
+    composables: {
+      prefix: '',
+      name: undefined,
+      include: undefined,
+      exclude: undefined
+    }
+  },
+  css: [
+    'primevue/resources/themes/lara-light-green/theme.css',
+    '~/assets/css/main.css',
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},
