@@ -1,13 +1,16 @@
 <template>
-    <div class="take__main__block container mx-auto">
-        <CheckList></CheckList>
-        <div class="take__stat__block">
-            <DayInWork :countDay="17"></DayInWork>
-            <StatBlock :perFir="23" :perSec="53"></StatBlock>
+    <div class="container mx-auto">
+        <div class="take__main__block">
+            <CheckList></CheckList>
+            <div class="take__stat__block">
+                <DayInWork :countDay="17"></DayInWork>
+                <StatBlock :perFir="23" :perSec="53"></StatBlock>
+            </div>
         </div>
+        <Qualification>
+        </Qualification>
+        <Advertising></Advertising>
     </div>
-    <Qualification>
-    </Qualification>
 </template>
 
 
@@ -17,6 +20,7 @@ import CheckList from '~/components/common/CheckList.vue';
 import DayInWork from '~/components/common/DayInWork.vue';
 import StatBlock from '~/components/common/StatBlock.vue';
 import Qualification from '~/components/common/Qualification.vue';
+import Advertising from '~/components/common/Advertising.vue';
 </script>
 
 

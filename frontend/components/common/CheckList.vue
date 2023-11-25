@@ -118,11 +118,11 @@ const mass = [{
 
 
     &__main__block {
-        width: 950px;
+        width: 999px;
         min-height: 300px;
         height: auto;
         background-color: #fff;
-        border-radius: 30px;
+        border-radius: 20px;
         filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.05));
         // border: 2px red solid;
         display: flex;
@@ -139,7 +139,7 @@ const mass = [{
     }
 
     &__title__block h3 {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 500;
         margin-top: 10px;
     }

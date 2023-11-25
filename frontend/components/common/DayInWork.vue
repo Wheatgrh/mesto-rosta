@@ -28,11 +28,11 @@ const props = withDefaults(defineProps<Props>(), {
         background-color: #fff;
         width: 381px;
         height: 199px;
-        border-radius: 30px;
+        border-radius: 20px;
     }
 
     &__main__block h3 {
-        font-size: 25px;
+        font-size: 20px;
         margin-top: 15px;
     }
 
