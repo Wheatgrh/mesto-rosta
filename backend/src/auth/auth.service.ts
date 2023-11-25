@@ -38,7 +38,11 @@ export class AuthService {
     const [userUuid] = res[0].split(':');
     const tokens = await this.jwtService.createTokensAsync(userUuid);
     await this.jwtService.removeToken(res[0]);
-    const user = await this.em.findOne(User, { uuid: userUuid });
+    const user = await this.em.findOne(
+      User,
+      { uuid: userUuid },
+      { populate: ['avatar', 'interests'] },
+    );
     return {
       tokens,
       user,

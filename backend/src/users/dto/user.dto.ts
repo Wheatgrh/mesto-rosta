@@ -27,6 +27,10 @@ export class UserDto {
       stat: boolean;
     },
   ];
+
+  @IsString()
+  @IsOptional()
+  avatar: string;
 }
 
 export class UpdateUserDto extends PartialType(UserDto) {

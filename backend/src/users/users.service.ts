@@ -16,7 +16,11 @@ export class UsersService {
 
   async getUser(phone: string) {
     try {
-      return await this.em.findOneOrFail(User, { phone });
+      return await this.em.findOneOrFail(
+        User,
+        { phone },
+        { populate: ['avatar', 'interests'] },
+      );
     } catch (err) {
       if (err instanceof NotFoundError) {
         throw new NotFoundException('Такого пользователя не существует');
@@ -26,9 +30,13 @@ export class UsersService {
 
   async updateUser(dto: UpdateUserDto) {
     try {
-      const user = await this.em.findOneOrFail(User, {
-        uuid: dto.uuid,
-      });
+      const user = await this.em.findOneOrFail(
+        User,
+        {
+          uuid: dto.uuid,
+        },
+        { populate: ['avatar', 'interests'] },
+      );
       this.em.assign(user, dto);
       await this.em.persistAndFlush(user);
       return user;
