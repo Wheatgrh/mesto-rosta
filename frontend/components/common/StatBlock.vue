@@ -65,7 +65,7 @@ export default {
         align-items: center;
         filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.05));
         background-color: #fff;
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 20px 0;
         margin-top: 30px;
 
@@ -86,7 +86,7 @@ export default {
     }
 
     &__main__block h3 {
-        font-size: 25px;
+        font-size: 20px;
         margin-bottom: 20px;
 
     }
