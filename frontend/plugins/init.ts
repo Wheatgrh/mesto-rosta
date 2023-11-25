@@ -1,6 +1,5 @@
 
 import { useAuthStore } from '../stores/auth';
-import { fetchInstance } from './api';
 export default defineNuxtPlugin(async (): Promise<void> => {
   const authStore = useAuthStore()
   const {$api} = useNuxtApp()  
