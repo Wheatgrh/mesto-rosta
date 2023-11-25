@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div style="padding: 0 10px;">
         <h3 class="title text-base">{{ title }}</h3>
-        <span>{{ text }}</span>
+        <span v-html="text"></span>
     </div>
 </template>
 

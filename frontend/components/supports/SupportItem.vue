@@ -1,7 +1,7 @@
 <template>
     <div class="support-container">
         <div class="support-container__block">
-            <div class="text-1xl	 tablet:text-3xl">ИТ-ипотека — теперь доступнее</div>
+            <div class="text-sm tablet:text-xl">{{ title }}</div>
             <div class="support-container__bottom">
                 <div>{{ date }}</div>
                 <div class="tag-container">
@@ -31,6 +31,7 @@ const rotationStyle = computed(() => ({
     'transform': state.value ? 'rotate(180deg)' : 'rotate(0deg)'
 }))
 defineProps<{
+    title: string,
     date: string,
     tags: TagType[],
     iconSrc: string,
@@ -103,7 +104,7 @@ const state = ref(false)
 }
 
 .drop-down-container_open {
-    max-height: 100px;
+    max-height: 700px;
     grid-template-rows: 1fr;
 }
 </style>
