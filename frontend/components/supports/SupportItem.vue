@@ -4,7 +4,7 @@
             <div class="support-container__block">
                 <div class="text-container text-sm tablet:text-lg">{{ title }}</div>
                 <div class="support-container__bottom">
-                    <div>{{ date }}</div>
+                    <div class="support-date-style">{{ date }}</div>
                     <div class="tag-container">
                         <component :is="TagButton" v-for="tag, i in tags"
                             :color="i === 0 ? 'var(--primary)' : 'var(--green)'" :text="tag.name" />
@@ -64,7 +64,7 @@ const state = ref(false)
     transition: all 500ms;
     overflow: hidden;
     display: grid;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     max-height: 0;
 }
 
@@ -74,6 +74,10 @@ const state = ref(false)
     justify-content: end;
     height: 100%;
     transition: all 500ms;
+}
+
+.support-date-style {
+    color: #959595;
 }
 
 .support-container {

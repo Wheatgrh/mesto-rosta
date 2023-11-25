@@ -23,9 +23,9 @@ const avatarStyle = computed(() => ({
 .avatar-container {
     display: grid;
     border-radius: 256px;
-    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.30);
-    width: 256px;
-    height: 256px;
+    filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.05));
+    width: 128px;
+    height: 128px;
     margin: 0 auto;
     background-color: var(--white);
     background-size: contain;

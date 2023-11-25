@@ -3,6 +3,17 @@
         <div class="event__filter__block">
             <h3>Фильтр</h3>
             <input placeholder="Поиск мероприятия" class="event__input__block" type="text">
+            <select placeholder="Год мероприятия" class="event__select__block">
+                <option>2023 год</option>
+                <option>2022 год</option>
+                <option>2021 год</option>
+                <option>2020 год</option>
+            </select>
+            <select placeholder="Место проведения" class="event__select__block">
+                <option>г. Сургут</option>
+                <option>г. Нижневартовск</option>
+                <option>ХМАО-Югра</option>
+            </select>
             <VButton class="event__button__style">Применить</VButton>
         </div>
         <div class="event__block__with__event">
@@ -21,8 +32,11 @@
                     <p>Результаты поиска: {{ countEvent }}</p>
                 </div>
             </div>
-            <div class="event__card__block">
-                <EventBlock></EventBlock>
+            <div v-for="item in mass" class="event__card__block">
+                <EventBlock :title="item.title" :stats="item.stat" :mainInfo="item.mainInfo"
+                    :company-name="item.companyName" :to-link="item.toLink" :count-participant="item.countParticipant"
+                    :photo="item.photo">
+                </EventBlock>
             </div>
         </div>
     </div>
@@ -41,12 +55,58 @@ const props = withDefaults(defineProps<Props>(), {
     countEvent: 5,
 })
 
+const mass = [{
+    title: "Лидер региона - 2023",
+    stat: "Прием заявок",
+    mainInfo: "Конкурсный отбор участников специального проекта поощрения активной молодежи в Ханты-Мансийском автономном округе – Югре «Лидеры региона – 2023» программы гражданско-патриотического и общественно полезного молодежного туризма «Больше, чем путешествие»",
+    companyName: 'Фонд "Центр гражданских и социальных инициатив Югры"',
+    toLink: "https://elkanko.ru/competitions/lidery-regiona-2023",
+    countParticipant: 639,
+
+},
+{
+    title: "Конкурс «Грант Губернатора Югры для физических лиц 2023»",
+    stat: "Завершен",
+    mainInfo: "Поддержим социально-значимые инициативы и проекты югорчан по 18 (восемнадцати) направлениям. Максимальная сумма гранта 1 000 000 (один миллион) рублей. Заявки принимаются по 2 октября 2023 до 23:30 по местному времени включительно.",
+    companyName: 'Фонд "Центр гражданских и социальных инициатив Югры"',
+    toLink: "https://elkanko.ru/contests/gfl-2023",
+    countParticipant: 233,
+    photo: "/grant.png"
+},
+{
+    title: "Конкурс «Премия Губернатора Югры в целях поощрения и поддержки талантливой молодежи»",
+    stat: "Комиссия",
+    mainInfo: "Для физических лиц в возрасте от 14 до 35 лет , проживающих в Югре, проявивших себя в профессии или общественной работе.",
+    companyName: 'Фонд "Центр гражданских и социальных инициатив Югры"',
+    toLink: "https://elkanko.ru/contests/premiia-gubernatora",
+    countParticipant: 214,
+    photo: "/premia.png"
+},
+{
+    title: "Конкурс «МЕДИА-ВЫШКА 2023»",
+    stat: "Завершен",
+    mainInfo: "Конкурс проектов в области культуры, искусства и креативных индустрий на грант Губернатора Югры",
+    companyName: 'Фонд "Центр гражданских и социальных инициатив Югры"',
+    toLink: "https://elkanko.ru/competitions/media-vyska-2023",
+    countParticipant: 121,
+    photo: "/media.png"
+}
+]
+
 </script>
 
 <style lang="scss">
 .event {
+    &__select__block {
+        filter: drop-shadow(0px 0px 2.200000047683716px rgba(0, 0, 0, 0.25));
+        border-radius: 10px;
+        width: 397px;
+        height: 35px;
+        font-size: 15px;
+        background-color: #fff;
 
-    &__card__block {}
+
+    }
 
     &__count__block {
         display: flex;

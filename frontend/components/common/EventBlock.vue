@@ -1,25 +1,27 @@
 <template>
     <div class="card__main__block">
-        <div class="card__upper__block">
-            <div class="card__status__block">
-                <p>{{ status }}</p>
+        <NuxtLink :to="toLink">
+            <div class="card__upper__block">
+                <div class="card__status__block">
+                    <p>{{ stats }}</p>
+                </div>
             </div>
-        </div>
-        <div class="card__down__block">
-            <div class="card__image__block">
-                <img class="card__img__style" src="/hmao.png" alt="">
+            <div class="card__down__block">
+                <div class="card__image__block">
+                    <img class="card__img__style" :src="photo" alt="">
+                </div>
+                <div class="card__block__text">
+                    <h3>
+                        {{ title }}
+                    </h3>
+                    <p>{{ mainInfo }}</p>
+                    <span>
+                        {{ countParticipant }} заявка
+                    </span>
+                    <p>{{ companyName }}</p>
+                </div>
             </div>
-            <div class="card__block__text">
-                <h3>
-                    {{ title }}
-                </h3>
-                <p>{{ mainInfo }}</p>
-                <span>
-                    {{ countParticipant }} заявка
-                </span>
-                <p>{{ companyName }}</p>
-            </div>
-        </div>
+        </NuxtLink>
     </div>
 </template>
 
@@ -30,17 +32,19 @@ export interface Props {
     title?: string,
     mainInfo: string,
     companyName: string,
-    status: string,
-    toLink?: string
+    stats: string,
+    toLink?: string,
+    photo?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
     countParticipant: 5,
     title: "Лидер региона - 2023",
-    status: "В процессе",
+    stats: "В процессе",
     mainInfo: "Конкурсный отбор участников специального проекта поощрения активной молодежи в Ханты-Мансийском автономном округе – Югре «Лидеры региона – 2023» программы гражданско-патриотического и общественно полезного молодежного туризма «Больше, чем путешествие»",
     companyName: 'Фонд "Центр гражданских и социальных инициатив Югры"',
-    toLink: "/"
+    toLink: "/",
+    photo: "/hmao.png"
 })
 
 </script>
@@ -55,6 +59,7 @@ const props = withDefaults(defineProps<Props>(), {
         filter: drop-shadow(0px 0px 56.900001525878906px rgba(0, 0, 0, 0.10));
         background-color: #fff;
         border-radius: 15px;
+        margin: 15px 0;
     }
 
     &__upper__block {

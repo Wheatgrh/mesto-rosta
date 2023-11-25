@@ -9,11 +9,12 @@
 
 <style lang="scss" scoped>
 .container__shadow {
-    filter: drop-shadow(0px 0px 56.900001525878906px rgba(0, 0, 0, 0.10));
-    min-height: 120px;
+    filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.05));
+    min-height: 60px;
     background-color: var(--white);
     border-radius: 15px;
-    padding: 24px 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
     transition: all 500ms;
 }
 </style>
