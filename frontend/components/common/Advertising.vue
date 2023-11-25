@@ -11,6 +11,12 @@
             <img src="/flame.png" alt="">
             <span class="adv__popular__style">Самая популярная программа</span>
         </div>
+        <div class="adv__block__bottom">
+            <div class="adv__title__blue__mini">
+                <span>+{{ cvalPer }}% к квалификации</span>
+            </div>
+        </div>
+
 
     </div>
 </template>
@@ -22,6 +28,7 @@ export interface Props {
     subj?: string,
     mainText?: string,
     mounth?: string,
+    cvalPer?: number
 
 }
 
@@ -29,7 +36,8 @@ const props = withDefaults(defineProps<Props>(), {
     title: "Технологии: Python",
     mainText: "Стань сеньором, покори мир современных технологий Стань сеньором, покори мир современных технологийСтань сеньором, покори мир современных технологий",
     mounth: "12 месяцев",
-    subj: "Разработчик python: старт в IT с нуля до Junior"
+    subj: "Разработчик python: старт в IT с нуля до Junior",
+    cvalPer: 30
 })
 </script>
 
@@ -108,6 +116,30 @@ const props = withDefaults(defineProps<Props>(), {
         justify-content: start;
         margin-top: 10px;
     }
+
+    &__title__blue__mini {
+        background-color: #589BFB;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 193px;
+        height: 26px;
+        border-radius: 5px;
+
+
+    }
+
+    &__title__blue__mini span {
+        color: #fff;
+        font-size: 15px;
+    }
+
+    &__block__bottom {
+        display: flex;
+        justify-content: end;
+        margin-top: 20px;
+    }
+
 
 
 
