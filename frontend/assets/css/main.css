@@ -9,6 +9,7 @@
   --light: #AFCDF9;
   --white: #ffffff;
   --dark: #000000;
+  --green: #63D2B4;
 }
 
 body {
@@ -21,13 +22,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Nunito', sans-serif;
-}
-
-span {
-  font-family: 'Nunito', sans-serif;
-}
-
-p {
   font-family: 'Nunito', sans-serif;
 }
