@@ -3,9 +3,9 @@
   <VHeader />
   <Sppliter />
   <UpcomingEvent />
-  <!-- <AboutUsCase /> -->
   <AboutUs />
   <Algorithm />
+  <ContactsMap />
 </template>
 
 <script setup lang="ts">
