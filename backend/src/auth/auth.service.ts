@@ -18,7 +18,11 @@ export class AuthService {
   ) {}
 
   async login(dto: LoginDto) {
-    const user = await this.em.findOne(User, { phone: dto.phone });
+    const user = await this.em.findOne(
+      User,
+      { phone: dto.phone },
+      { populate: ['avatar', 'interests'] },
+    );
     if (!user || !(await bcrypt.compare(dto.password, user.password))) {
       throw new ForbiddenException('Неверный логин или пароль');
     }

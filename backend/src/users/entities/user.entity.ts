@@ -37,12 +37,12 @@ export class User extends BaseEntity<User, 'uuid'> {
   @Property()
   role: string;
 
-  @ManyToMany({
-    nullable: true,
-    entity: () => Interest,
-    pivotEntity: () => UserInterest,
-  })
-  interests = new Collection<Interest>(this);
+  // @ManyToMany({
+  //   nullable: true,
+  //   entity: () => Interest,
+  //   pivotEntity: () => UserInterest,
+  // })
+  // interests = new Collection<Interest>(this);
 
   @Property({ type: 'int', default: 0 })
   score: number;
@@ -55,4 +55,7 @@ export class User extends BaseEntity<User, 'uuid'> {
 
   @Property({ type: 'jsonb', nullable: true })
   checkList: [{ quest: string; stat: boolean }];
+
+  @Property({ type: 'array', nullable: true })
+  interests: string[];
 }

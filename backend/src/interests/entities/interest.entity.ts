@@ -17,6 +17,6 @@ export class Interest extends BaseEntity<Interest, 'uuid'> {
   @Property()
   name: string;
 
-  @ManyToMany({ entity: () => User, mappedBy: (o) => o.interests })
-  users = new Collection<User>(this);
+  // @ManyToMany({ entity: () => User, mappedBy: (o) => o.interests })
+  // users = new Collection<User>(this);
 }

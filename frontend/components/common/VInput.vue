@@ -2,7 +2,7 @@
   <div class="v-input" :class="{ 'v-input_error': error, 'v-input_small': small, 'v-input_dark': dark }">
     <label v-if="label" class="v-input__label" v-html="label"></label>
     <input class="v-input__field" v-model="cValue" :type="type || 'text'" :placeholder="placeholder ? placeholder : ''"
-      @focus="$emit('focus')" :inputmode="type === 'number' ? 'numeric' : undefined" />
+      @focus="$emit('focus')" :inputmode="type === 'number' ? 'numeric' : undefined" :disabled="disabled" />
     <div class="v-input__error" v-if="error">error</div>
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   label?: string,
+  disabled?: boolean,
   value?: string | number,
   error?: string,
   type?: string,

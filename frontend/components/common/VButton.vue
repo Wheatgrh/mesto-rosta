@@ -32,6 +32,7 @@ defineProps<{
   &:hover {
     color: var(--white);
     background: var(--primary);
+    cursor: pointer;
   }
 
   &_secondary {

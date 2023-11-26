@@ -471,6 +471,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "json"
+        },
+        "interests": {
+          "name": "interests",
+          "type": "text[]",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "array"
         }
       },
       "name": "users",

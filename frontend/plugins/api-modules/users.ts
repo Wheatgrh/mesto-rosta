@@ -21,4 +21,17 @@ export class UsersApi {
     })
   }
 
+  public async getOne(phone: string): Promise<IUser> {
+    return await this.fetch(`${baseURL}/${phone}`, {
+      method: 'GET'
+    })
+  }
+
+  public async updateInterests(payload: {userUuid: string, interests: Array<string>}){
+    return await this.fetch(`${baseURL}/interests`, {
+      method: 'PATCH',
+      body: {...payload}
+    })
+  }
+
 }

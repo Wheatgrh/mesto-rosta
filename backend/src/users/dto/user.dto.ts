@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsOptional, IsString } from 'class-validator';
+import { IsArray, IsOptional, IsString } from 'class-validator';
 
 export class UserDto {
   @IsString()
@@ -31,6 +31,9 @@ export class UserDto {
   @IsString()
   @IsOptional()
   avatar: string;
+
+  @IsArray()
+  interests: Array<string>;
 }
 
 export class UpdateUserDto extends PartialType(UserDto) {

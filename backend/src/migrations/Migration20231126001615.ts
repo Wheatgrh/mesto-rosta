@@ -1,6 +1,6 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20231125154837 extends Migration {
+export class Migration20231126001615 extends Migration {
 
   async up(): Promise<void> {
     this.addSql('create table "interests" ("uuid" varchar(255) not null, "name" varchar(255) not null, constraint "interests_pkey" primary key ("uuid"));');
@@ -15,7 +15,7 @@ export class Migration20231125154837 extends Migration {
 
     this.addSql('create table "courses_interests" ("course_uuid" varchar(255) not null, "interest_uuid" varchar(255) not null, constraint "courses_interests_pkey" primary key ("course_uuid", "interest_uuid"));');
 
-    this.addSql('create table "users" ("uuid" varchar(255) not null, "name" varchar(255) not null, "surname" varchar(255) not null, "patronymic" varchar(255) not null, "phone" varchar(255) not null, "password" varchar(255) not null, "role" varchar(255) not null, "score" int not null default 0, "avatar_uuid" varchar(255) null, constraint "users_pkey" primary key ("uuid"));');
+    this.addSql('create table "users" ("uuid" varchar(255) not null, "name" varchar(255) not null, "surname" varchar(255) not null, "patronymic" varchar(255) not null, "phone" varchar(255) not null, "password" varchar(255) not null, "role" varchar(255) not null, "score" int not null default 0, "avatar_uuid" varchar(255) null, "check_list" jsonb null, "interests" text[] null, constraint "users_pkey" primary key ("uuid"));');
     this.addSql('alter table "users" add constraint "users_phone_unique" unique ("phone");');
 
     this.addSql('create table "certificates" ("uuid" varchar(255) not null, "file_uuid" varchar(255) not null, "validated" boolean not null default false, "user_uuid" varchar(255) not null, "course_uuid" varchar(255) null, constraint "certificates_pkey" primary key ("uuid"));');

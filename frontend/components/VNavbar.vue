@@ -13,7 +13,6 @@
               <i class="icon-phone navbar__icon mr-2" />
               <a href="tel:+79222222222" class="font-medium">+7(922)222 22 22</a>
             </div>
-            <LinkButton>Перезвоните мне</LinkButton>
             <VButton class="w-full">Войти</VButton>
           </div>
         </div>
@@ -34,9 +33,10 @@
             <i class="icon-phone navbar__icon mr-2" />
             <a href="tel:+79222222222" class="font-medium">+7(922)222 22 22</a>
           </div>
-          <LinkButton>Перезвоните мне</LinkButton>
         </div>
-        <VButton>Войти</VButton>
+        <Avatarka v-if="authStore.isAuth()" :url="user?.avatar.url" />
+        <NuxtLink to="/login" v-else class="button">Войти</NuxtLink>
+        <!-- <VButton v-else>Войти</VButton> -->
       </div>
       <button class="navbar__burger" :class="{ 'navbar__burger_active': isOpened }" @click="onToggle">
         <span class="navbar__burger-middle" />
@@ -45,8 +45,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import LinkButton from './common/LinkButton.vue';
+import { useAuthStore } from '../stores/auth';
 import VButton from './common/VButton.vue';
+const authStore = useAuthStore()
+const user = computed(() => authStore.user)
 
 const route = useRoute()
 const menu = [{

@@ -1,21 +1,20 @@
 <template>
     <div class="grid grid-cols-12 gap-y-12 mb-10">
         <Input v-for="item in list" :value="item.value" :placeholder="item.placeholder" />
-
-        <div class="card flex justify-content-center col-start-3 col-end-11 input-border" style="padding: 0;">
+        <!-- <div class="card flex justify-content-center col-start-3 col-end-11 input-border" style="padding: 0;">
             <Dropdown v-model="gender" :options="genders" optionLabel="name" placeholder="Пол"
                 class="w-full md:w-14rem pt-1" />
-        </div>
+        </div> -->
 
         <div class="card flex justify-content-center col-start-3 col-end-11 input-border" style="padding: 0;">
             <Dropdown v-model="role" :options="roles" optionLabel="name" placeholder="Роль"
                 class="w-full md:w-14rem pt-1" />
         </div>
 
-        <span class="p-float-label col-start-3 col-end-11 input-border">
+        <!-- <span class="p-float-label col-start-3 col-end-11 input-border">
             <Calendar v-model="date" inputId="birth_date" />
             <label for="birth_date">Дата рождения</label>
-        </span>
+        </span> -->
 
         <span class="p-float-label input-border col-start-3 col-end-11 grid">
             <InputText id="tag" v-model="currentTag" @keyup.enter="addTag" />
@@ -55,7 +54,7 @@ const genders = ref([
     { name: 'Женский', id: '2' }
 ]);
 
-const role = ref({ name: '', id: 1 });
+const role = ref({ name: 'Пользователь', id: 1 });
 const roles = ref([
     { name: 'Партнер', id: '1' },
     { name: 'Пользователь', id: '2' }
@@ -69,7 +68,7 @@ const list = [
     { id: 'name', value: name, placeholder: 'Фамилия' },
     { id: 'surname', value: surname, placeholder: 'Имя' },
     { id: 'patronymic', value: patronymic, placeholder: 'Отчество' },
-    { id: 'interests', value: interests, placeholder: 'Направление разработки' },
+    // { id: 'interests', value: interests, placeholder: 'Направление разработки' },
 ]
 
 const addTag = () => {

@@ -4,6 +4,7 @@ import { ApiError } from './api-modules/api-error'
 import { AuthApi } from './api-modules/auth'
 import { GptApi } from './api-modules/gpt';
 import { UsersApi } from './api-modules/users';
+import { CertificatesApi } from './api-modules/certificates';
 
 export let fetchInstance: $Fetch;
 
@@ -38,7 +39,8 @@ export default defineNuxtPlugin(nuxtApp => {
     uploads: new UploadsApi(fetchInstance),
     auth: new AuthApi(fetchInstance),
     gpt: new GptApi(fetchInstance),
-    users: new UsersApi(fetchInstance)
+    users: new UsersApi(fetchInstance),
+    certificates: new CertificatesApi(fetchInstance)
   }
 
   Object.freeze(modules)

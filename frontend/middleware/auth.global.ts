@@ -10,4 +10,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   if (to.fullPath === '/takeoff' && !authStore.isAuth()) {
     return navigateTo('/login')
   }
+  if (to.fullPath === '/profile' && !authStore.isAuth()) {
+    return navigateTo('/login')
+  }
 })

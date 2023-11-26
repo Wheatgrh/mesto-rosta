@@ -24,8 +24,8 @@ const avatarStyle = computed(() => ({
     display: grid;
     border-radius: 256px;
     filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.05));
-    width: 128px;
-    height: 128px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
     background-color: var(--white);
     background-size: contain;
