@@ -44,9 +44,9 @@ const loadMore = () => {
         loadButtonShow.value = false
     }
 }
-
 onMounted(async () => {
     try {
+        isLoading.value = true
         const responseData = await fetchData('https://www.gosuslugi.ru/api/content-store/v1/store/measures/news'); // Используйте функцию из модуля API
         supportsSorted(responseData)
     } catch (error) {
