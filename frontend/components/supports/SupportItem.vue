@@ -17,7 +17,8 @@
         </div>
         <div class="container drop-down-container" :class="{ 'drop-down-container_open': state }"
             ref="dropDownContainerRef">
-            <component :is="Description" v-for="item in description" :title="item.title" :text="item.text" />
+            <component :is="Description" :loadButtonShow="loadButtonShow" v-for="item in description" :title="item.title"
+                :text="item.text" />
         </div>
     </component>
 </template>
@@ -40,21 +41,13 @@ defineProps<{
     date: string,
     tags: TagType[],
     iconSrc: string,
-    description: DescriptionType[]
+    description: DescriptionType[],
+    loadButtonShow: boolean,
 }>()
 
 const handleClick = () => state.value = !state.value
 const dropDownContainerRef = ref<HTMLElement | null>(null);
 
-// watchEffect(() => {
-//     if (dropDownContainerRef.value) {
-//         if (state.value) {
-//             dropDownContainerRef.value.classList.add('open');
-//         } else {
-//             dropDownContainerRef.value.classList.remove('open');
-//         }
-//     }
-// });
 
 const state = ref(false)
 </script>
