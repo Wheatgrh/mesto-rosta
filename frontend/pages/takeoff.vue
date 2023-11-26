@@ -9,6 +9,7 @@
                 </div>
             </div>
             <Qualification />
+            <h2 class="recomended_h2">Рекомендуемые курсы</h2>
             <Advertising />
         </template>
         <QuestionBlock v-else />
@@ -57,5 +58,10 @@ const checkListPercets = computed(() => {
         display: flex;
         justify-content: space-between;
     }
+}
+
+.recomended_h2 {
+    font-size: 34px;
+    font-weight: 600;
 }
 </style>

@@ -38,6 +38,7 @@
     "class-validator": "^0.14.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.1",
+    "natural": "^6.9.0",
     "pdf-parse": "^1.1.1",
     "redis": "^4.6.10",
     "reflect-metadata": "^0.1.13",

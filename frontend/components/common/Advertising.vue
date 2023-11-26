@@ -1,28 +1,34 @@
 <template>
-    <div class="adv__main__block">
-        <div class="adv__title__blue">
-            <span>{{ title }}</span>
-        </div>
-        <h3>{{ subj }}</h3>
-        <p>{{ mainText }}</p>
-        <div class="adv__spliter__style"></div>
-        <h1>Срок обучения:<span class="adv__mounth__style">{{ mounth }}</span></h1>
-        <div class="adv__popular__block">
-            <img src="/flame.png" alt="">
-            <span class="adv__popular__style">Самая популярная программа</span>
-        </div>
-        <div class="adv__block__bottom">
-            <div class="adv__title__blue__mini">
-                <span>+{{ cvalPer }}% к квалификации</span>
+    <swiper-container class="py-[30px] px-[30px]" ref="swiperEl" init="false">
+        <swiper-slide v-for="event in [1, 2, 3, 5, 4, 6, 7,]">
+            <div class="adv__main__block">
+                <div class="adv__title__blue">
+                    <span>{{ title }}</span>
+                </div>
+                <h3>{{ subj }}</h3>
+                <p>{{ mainText }}</p>
+                <div class="adv__spliter__style"></div>
+                <h1>Срок обучения:<span class="adv__mounth__style">{{ mounth }}</span></h1>
+                <div class="adv__popular__block">
+                    <img src="/flame.png" alt="">
+                    <span class="adv__popular__style">Самая популярная программа</span>
+                </div>
+                <div class="adv__block__bottom">
+                    <div class="adv__title__blue__mini">
+                        <span>+{{ cvalPer }}% к квалификации</span>
+                    </div>
+                </div>
             </div>
-        </div>
-
-
-    </div>
+        </swiper-slide>
+    </swiper-container>
 </template>
 
 
 <script setup lang="ts">
+import { register } from 'swiper/element/bundle';
+import Swiper from 'swiper';
+import type { SwiperOptions } from 'swiper/types';
+
 export interface Props {
     title?: string,
     subj?: string,
@@ -38,6 +44,29 @@ const props = withDefaults(defineProps<Props>(), {
     mounth: "12 месяцев",
     subj: "Разработчик python: старт в IT с нуля до Junior",
     cvalPer: 30
+})
+
+register();
+const swiperEl: Ref<undefined | { swiper: Swiper, initialize: () => void }> = ref()
+const swiperParams: SwiperOptions = {
+    autoplay: true,
+    speed: 700,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    breakpoints: {
+        1024: {
+            slidesPerView: 3
+        },
+        760: {
+            slidesPerView: 2
+        },
+
+    }
+}
+onMounted(() => {
+    Object.assign(swiperEl.value!, swiperParams);
+    swiperEl.value?.initialize()
 })
 </script>
 
@@ -73,7 +102,6 @@ const props = withDefaults(defineProps<Props>(), {
     }
 
     &__main__block {
-        width: 419px;
         font-size: 25px;
         font-weight: 600;
         filter: drop-shadow(0px 0px 42.400001525878906px rgba(0, 0, 0, 0.05));

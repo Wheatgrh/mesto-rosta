@@ -5,10 +5,12 @@ import { Certificate } from './entities/certificate.entity';
 import { User } from '../users/entities/user.entity';
 import * as fs from 'node:fs';
 import * as cheerio from 'cheerio';
+import * as natural from 'natural';
 
 import axios from 'axios';
 import * as pdf from 'pdf-parse';
 import { UploadFile } from '../uploads/entities/file.entity';
+import { log } from 'node:console';
 interface CourseData {
   user: string;
   course: string;
@@ -86,14 +88,235 @@ export class CertificatesService {
     }
   }
 
+  private async classifyCourseLanguage(courseName) {
+    const languageKeywords = {
+      JavaScript: [
+        'React',
+        'Angular',
+        'Vue.js',
+        'Node.js',
+        'Express.js',
+        'npm',
+        'Webpack',
+        'Babel',
+        'TypeScript',
+        'ES6',
+        'JQuery',
+        'D3.js',
+        'Mocha',
+        'Jest',
+        'Redux',
+        'Meteor',
+        'Backbone.js',
+      ],
+      Python: [
+        'Django',
+        'Flask',
+        'Pandas',
+        'NumPy',
+        'SciPy',
+        'TensorFlow',
+        'PyTorch',
+        'Matplotlib',
+        'Scikit-Learn',
+        'Jupyter',
+        'Anaconda',
+        'PIP',
+        'BeautifulSoup',
+        'Selenium',
+        'PyGame',
+        'Keras',
+        'SQLAlchemy',
+      ],
+      Java: [
+        'Spring',
+        'Hibernate',
+        'Apache Maven',
+        'Apache Ant',
+        'JavaFX',
+        'J2EE',
+        'Swing',
+        'JUnit',
+        'Eclipse',
+        'NetBeans',
+        'IntelliJ IDEA',
+        'Tomcat',
+        'JDBC',
+        'JavaBeans',
+      ],
+      'C#': [
+        '.NET',
+        'ASP.NET',
+        'Entity Framework',
+        'Xamarin',
+        'Visual Studio',
+        'NuGet',
+        'WPF',
+        'Blazor',
+        'Unity',
+        'LINQ',
+        'Azure',
+        'MVC',
+      ],
+      'C++': [
+        'Boost',
+        'Qt',
+        'STL',
+        'CMake',
+        'GCC',
+        'Clang',
+        'OpenGL',
+        'Unreal Engine',
+        'SFML',
+        'OpenCV',
+        'MFC',
+        'CUDA',
+      ],
+      PHP: [
+        'Laravel',
+        'Symfony',
+        'CodeIgniter',
+        'Zend Framework',
+        'Composer',
+        'PHPUnit',
+        'Drupal',
+        'WordPress',
+        'Magento',
+        'Yii',
+        'CakePHP',
+        'Slim',
+      ],
+      Ruby: [
+        'Ruby on Rails',
+        'Sinatra',
+        'RubyGems',
+        'RVM',
+        'Capistrano',
+        'Puma',
+        'Sidekiq',
+        'RSpec',
+        'Cucumber',
+      ],
+      Go: [
+        'Go Modules',
+        'GoLand',
+        'Gin',
+        'Beego',
+        'Revel',
+        'Echo',
+        'Martini',
+        'Gorilla Mux',
+        'Gorm',
+      ],
+      Swift: [
+        'SwiftUI',
+        'UIKit',
+        'Vapor',
+        'Xcode',
+        'Swift Package Manager',
+        'Core Data',
+        'ARKit',
+        'SpriteKit',
+        'SceneKit',
+      ],
+      Kotlin: [
+        'Spring Boot',
+        'Ktor',
+        'Jetpack Compose',
+        'IntelliJ IDEA',
+        'Kotlin Multiplatform',
+        'Android Studio',
+        'Coroutines',
+        'Arrow',
+        'Exposed',
+      ],
+      Rust: [
+        'Cargo',
+        'Rustup',
+        'Actix',
+        'Tokio',
+        'Serde',
+        'Rocket',
+        'Diesel',
+        'WASM',
+        'Async-std',
+        'Yew',
+      ],
+      Дизайн: [
+        'Adobe Photoshop',
+        'Adobe Illustrator',
+        'CorelDRAW',
+        'Sketch',
+        'Figma',
+        'Inkscape',
+        'HTML',
+        'CSS',
+        'JavaScript',
+        'Bootstrap',
+        'WordPress',
+        'Adobe XD',
+        'InVision',
+        'Axure',
+        'Balsamiq',
+        'Blender',
+        'Autodesk Maya',
+        'Cinema 4D',
+        '3ds Max',
+        'ZBrush',
+        'SolidWorks',
+        'AutoCAD',
+        'Fusion 360',
+        'SketchUp',
+        'Revit',
+        'V-Ray',
+        'CLO3D',
+        'Lectra',
+      ],
+      Маркетинг: [
+        'Google Analytics',
+        'Google AdWords',
+        'Facebook Ads',
+        'Instagram Ads',
+        'Mailchimp',
+        'Google Search Console',
+        'SEMrush',
+        'Ahrefs',
+        'Moz',
+        'WordPress',
+        'Yoast SEO',
+        'Canva',
+        'Hootsuite',
+        'Shopify',
+        'WooCommerce',
+        'Magento',
+        'Salesforce',
+        'HubSpot',
+        'Zoho CRM',
+        'SendGrid',
+        'Constant Contact',
+      ],
+    };
+    const tokenizer = new natural.WordTokenizer();
+    const tokens = tokenizer.tokenize(courseName);
+    for (const lang in languageKeywords) {
+      if (languageKeywords[lang].some((keyword) => tokens.includes(keyword))) {
+        return lang;
+      }
+    }
+    return 'Unknown';
+  }
+
   async create(dto: CertificateDto) {
     const user = await this.em.findOne(User, { uuid: dto.userUuid });
     const cert = this.em.create(Certificate, { ...dto, course: null });
     const res = await this.validate(cert.file);
     let tmp = false;
+    let lang = null;
     if (res) {
+      lang = await this.classifyCourseLanguage(res.course);
       tmp = await this.verification(res);
     }
+    console.log(lang);
     cert.validated = tmp;
     cert.user = user;
     await this.em.persistAndFlush(cert);
