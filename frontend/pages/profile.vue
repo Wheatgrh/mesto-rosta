@@ -3,6 +3,10 @@
         <div v-if="error">{{ error }}</div>
         <div v-else>
             <Avatar :imagePath="user?.avatar.url" />
+            <a href="/CV.pdf" download class="flex items-center justify-center gap-2 mb-4">
+                <img class="profile__cv-icon" src="/images/cv.svg" alt="cv">
+                <div class="profile__cv">Скачать резюме</div>
+            </a>
             <form class="profile__form mb-5" v-if="user">
                 <VInput v-model:value="user.surname" placeholder="Фамилия" disabled />
                 <VInput v-model:value="user.name" placeholder="Имя" disabled />
@@ -76,6 +80,14 @@ const { data: user, error } = await useAsyncData(
 </script>
 
 <style lang="scss">
+.profile__cv-icon {
+    width: 30px;
+}
+
+.profile__cv {
+    color: var(--primary);
+}
+
 .icon_ok {
     color: green;
 }

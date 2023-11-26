@@ -42,7 +42,7 @@ const items = ['Поддержка IT предпринимателей', 'Бес
 
 <style lang="scss">
 .header {
-  background: url('/images/header-bg.jpg') center no-repeat;
+  // background: url('/images/header-bg.jpg') center no-repeat;
   background-size: cover;
   height: 900px;
   padding-top: 77px;
