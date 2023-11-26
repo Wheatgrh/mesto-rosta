@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   //     return navigateTo('/login')
   //   }
   // }
-  if (to.fullPath === '/takeoff' && !authStore.isAuth()) {
-    return navigateTo('/login')
-  }
+  // if (to.fullPath === '/takeoff' && !authStore.isAuth()) {
+  //   return navigateTo('/login')
+  // }
 })

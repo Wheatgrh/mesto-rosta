@@ -3,7 +3,7 @@
         <div class="title text-2xl">Что нового</div>
         <VInput v-model:value="cValue" placeholder="Поиск" />
         <div class="filter-container__button">
-            <div>
+            <div @click="supportsSorted()">
                 <img src="/images/filter.svg">
             </div>
             <div>Показать фильтры</div>
@@ -14,7 +14,8 @@
 <script lang="ts" setup>
 import VInput from '../common/VInput.vue';
 const props = defineProps<{
-    value: string
+    value: string,
+    supportsSorted: Function
 }>()
 const emit = defineEmits(['update:value'])
 const cValue = computed({
