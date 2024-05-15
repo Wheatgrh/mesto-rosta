@@ -27,7 +27,7 @@ export class GptService {
 
         .post('https://api.proxyapi.ru/openai/v1/chat/completions', body, {
           headers: {
-            Authorization: 'Bearer sk-hX5cQQLDacvBNZLqMAhmWVMjIRyuKkxM',
+            Authorization: 'Bearer',
             'Content-Type': 'application/json',
           },
         })
